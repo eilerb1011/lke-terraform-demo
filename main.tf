@@ -22,8 +22,12 @@ resource "linode_lke_cluster" "CBC" {
     for_each = var.pools
     content {
       type  = pool.value["type"]
-      count = pool.value["count"]
+      count = pool.value["min"]
     }
+    autoscaler {
+          min = pool.value["min"]
+          max = pool.value["min"]
+        }
   }
 
 

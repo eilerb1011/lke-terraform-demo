@@ -1,8 +1,6 @@
 k8s_version = "1.26"
-label = $region-"k8s"
+label = "us-east-k8s-2"
 region = "us-east"
-#Mark the following true or false for HA control plane
-control = "true"
 pools = {
   "pool-1" = {
     type = "g6-standard-1"

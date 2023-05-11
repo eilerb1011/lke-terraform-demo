@@ -1,12 +1,6 @@
 # LKE + Terraform Demo
 
-This demo uses Terraform to spin up infrastructure on Linode and deploy a Kubernetes cluster using Linode Kubernetes Engine (LKE).
-
-The demo is split into two directories:
-
-- infrastructure: contains the Terraform code to spin up the infrastructure, including the LKE cluster.
-- k8s: contains the Terraform code to deploy the Kubernetes environment, including a deployment and a service
-
+This demo uses Terraform to spin up infrastructure on Linode and deploy an East and West Kubernetes cluster using Linode Kubernetes Engine (LKE).
 
 ## Prerequisites
 Before starting this demo, you should have the following:

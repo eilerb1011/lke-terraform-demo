@@ -13,13 +13,15 @@ Before starting this demo, you should have the following:
 
 - Linode account
 - Linode Personal Access Token (PAT) with the following scopes: linodes:read_write, lke:read_write
-- The Terraform CLI installed on your machine
+- A Gitlab account - either Gitlab.com or Gitlab CE will do:
+-   For Gitlab CE, you will need access to a docker runner.
+-   You will also need to create a personal access token in Github.
 
 ## SetUp
-1. Clone this repository to your local machine:
+1. Import this repository to a new Gitlab Project:
 
 ```
-git clone https://github.com/<YOUR-USERNAME>/lke-terraform-demo.git
+Click New Project and select Import
 ```
 2. cd into the infrastructure directory:
 

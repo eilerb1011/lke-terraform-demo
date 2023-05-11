@@ -33,41 +33,6 @@ resource "linode_lke_cluster" "CBC" {
     }
   }
 
-
-locals {
-  kubeconfig = base64decode(linode_lke_cluster.CBC.kubeconfig)
-}
-
-resource "null_resource" "write_kubeconfig" {
-  provisioner "local-exec" {
-    command = "mkdir ~/.kube && echo '${local.kubeconfig}' > ~/.kube/cbcPOC"
-  }
-}
-
-
-
-//Export this cluster's attributes
-output "kubeconfig" {
-  value     = linode_lke_cluster.CBC.kubeconfig
-  sensitive = true
-}
-
-output "api_endpoints" {
-  value = linode_lke_cluster.CBC.api_endpoints
-}
-
-output "status" {
-  value = linode_lke_cluster.CBC.status
-}
-
-output "id" {
-  value = linode_lke_cluster.CBC.id
-}
-
-output "pool" {
-  value = linode_lke_cluster.CBC.pool
-}
-
 terraform {
   backend "http" {
   }

@@ -66,7 +66,7 @@ output "pool" {
 
 
 
-variable "token" {}
+#variable "token" {}
 variable "pass" {}
 variable "k8s_version" {}
 variable "label" {}

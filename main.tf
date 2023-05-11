@@ -17,18 +17,19 @@ resource "linode_lke_cluster" "CBC" {
   k8s_version = var.k8s_version
   label       = var.label
   region      = var.region
-
+  control_plane = var.control
   dynamic "pool" {
     for_each = var.pools
     content {
       type  = pool.value["type"]
-      count = pool.value["min"]
+      count = pool.value["min-nodes"]
     }
     autoscaler {
-          min = pool.value["min"]
-          max = pool.value["min"]
+          min = pool.value["min-nodes"]
+          max = pool.value["max-nodes"]
         }
   }
+
 
 
 }

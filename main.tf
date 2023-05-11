@@ -64,15 +64,6 @@ output "pool" {
   value = linode_lke_cluster.CBC.pool
 }
 
-
-
-#variable "token" {}
-variable "pass" {}
-variable "k8s_version" {}
-variable "label" {}
-variable "region" {}
-variable "pools" {}
-
 terraform {
   backend "http" {
   }

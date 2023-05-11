@@ -18,7 +18,7 @@ resource "linode_lke_cluster" "CBC" {
   label       = var.label
   region      = var.region
   control_plane  {
-        high_availability = var.ha
+        high_availability = var.HA
     }
   dynamic "pool" {
     for_each = var.pools

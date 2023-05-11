@@ -4,6 +4,7 @@ region = "us-east"
 pools = {
   "pool-1" = {
     type = "g6-standard-1"
-    quantity = 2
+    min-nodes = 2
+    max-nodes = 2
   }
 }

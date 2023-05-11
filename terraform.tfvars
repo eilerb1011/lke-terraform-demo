@@ -1,4 +1,3 @@
-token = ""
 k8s_version = "1.26"
 label = $region-"k8s"
 region = "us-east"

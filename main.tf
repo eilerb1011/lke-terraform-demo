@@ -17,6 +17,9 @@ resource "linode_lke_cluster" "CBC" {
   k8s_version = var.k8s_version
   label       = var.label
   region      = var.region
+  control_plane  {
+        high_availability = var.ha
+    }
   dynamic "pool" {
     for_each = var.pools
     content {

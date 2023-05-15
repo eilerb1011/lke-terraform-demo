@@ -20,7 +20,6 @@ Before starting this demo, you should have the following:
 -HA Value determines whether the control plane has 1 node or 3.  And HA control plane can not be reverted.  However a non-HA control plane can be upgraded later.
 -Select you Linode instance types used in the node pool:  Values can be found using the API:  curl https://api.linode.com/v4/linode/types | jq
 -Set your minimum and maximum nodes for auto-scaling.
-```
 k8s_version = "1.26"
 #####CLUSTER 1 Settings###############
 label = "us-east-k8s-2"
@@ -53,11 +52,10 @@ pools2 = {
 -enter your Linode personal access token as the value
 ```
 4.  Assign a docker runner to the project in Gitlab under Settings --> CICD --> Runners
-
+```
 5. Validate Pipeline is functioning by viewing CICD --> Pipelines:
 ```
 6. Create the infrastructure:
 ```
 If all phases are passing, you can manually deploy or comment out the following lines from .gitlab-ci.yml to have deployments fully automated
 -**WARNING** Terraform can be destructive and this action could result in infrastructure being unintentionally destroyed.
-```

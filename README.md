@@ -16,9 +16,13 @@ Before starting this demo, you should have the following:
 -Click New Project and select Import
 
 2. Edit terraform.tfvars file and add your own values to the file.
+
 -If you only want one cluster. delete everything starting with the CLUSTER 2 Settings line
+
 -HA Value determines whether the control plane has 1 node or 3.  And HA control plane can not be reverted.  However a non-HA control plane can be upgraded later.
+
 -Select you Linode instance types used in the node pool:  Values can be found using the API:  curl https://api.linode.com/v4/linode/types | jq
+
 -Set your minimum and maximum nodes for auto-scaling.
 ```
 k8s_version = "1.26"

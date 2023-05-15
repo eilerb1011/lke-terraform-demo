@@ -52,9 +52,9 @@ pools2 = {
 -enter your Linode personal access token as the value
 ```
 4.  Assign a docker runner to the project in Gitlab under Settings --> CICD --> Runners
-```
+
 5. Validate Pipeline is functioning by viewing CICD --> Pipelines:
-```
+
 6. Create the infrastructure:
 ```
 If all phases are passing, you can manually deploy or comment out the following lines from .gitlab-ci.yml to have deployments fully automated

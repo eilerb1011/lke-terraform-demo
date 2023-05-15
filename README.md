@@ -1,6 +1,6 @@
 # LKE + Terraform Demo
 
-This demo uses Terraform to spin up infrastructure on Linode and deploy an East and West Kubernetes cluster using Linode Kubernetes Engine (LKE).
+This demo uses Terraform and Gitlab to instantiate infrastructure on Linode and deploy an East and West Kubernetes cluster using Linode Kubernetes Engine (LKE).
 
 ## Prerequisites
 Before starting this demo, you should have the following:
@@ -13,20 +13,37 @@ Before starting this demo, you should have the following:
 
 ## SetUp
 1. Import this repository to a new Gitlab Project:
-
+-Click New Project and select Import
 ```
-Click New Project and select Import
+2. Edit terraform.tfvars file and add your own values to the file.
+-If you only want one cluster. delete everything starting with the CLUSTER 2 Settings line
+-HA Value determines whether the control plane has 1 node or 3.  And HA control plane can not be reverted.  However a non-HA control plane can be upgraded later.
+-Select you Linode instance types used in the node pool:  Values can be found using the API:  curl https://api.linode.com/v4/linode/types | jq
+-Set your minimum and maximum nodes for auto-scaling.
 ```
-
-2. Edit terraform.tfvars file and add you own values in (Do not replace the token value):
-```
-k8s_version = "<K8S-VERSION>"
-label = "<CLUSTER-LABEL>"
-region = "<CLUSTER-REGION>"
+k8s_version = "1.26"
+#####CLUSTER 1 Settings###############
+label = "us-east-k8s-2"
+region = "us-east"
+#Mark the following true for HA control plane or false for non-HA
+HA = false
 pools = {
   "pool-1" = {
-    type = "<POOL-TYPE>"
-    count = <POOL-COUNT>
+    type = "g6-standard-1"
+    min-nodes = 2
+    max-nodes = 2
+  }
+}
+############CLUSTER 2 Settings###########
+label2 = "us-west-k8s-2"
+region2 = "us-west"
+#Mark the following true for HA control plane or false for non-HA
+HA2 = false
+pools2 = {
+  "pool-2" = {
+    type2 = "g6-standard-1"
+    min-nodes2 = 1
+    max-nodes2 = 3
   }
 }
 ```
@@ -37,42 +54,10 @@ pools = {
 ```
 4.  Assign a docker runner to the project in Gitlab under Settings --> CICD --> Runners
 
-5. Initialize the Terraform providers:
+5. Validate Pipeline is functioning by viewing CICD --> Pipelines:
 ```
-terraform init
+6. Create the infrastructure:
 ```
-
-5. Create the infrastructure:
+If all phases are passing, you can manually deploy or comment out the following lines from .gitlab-ci.yml to have deployments fully automated
+-**WARNING** Terraform can be destructive and this action could result in infrastructure being unintentionally destroyed.
 ```
-terraform plan
-terraform apply
-```
-
-6. After the infrastructure is created, navigate to the k8s directory:
-```
-cd ../k8s
-```
-
-7. Initialize the Terraform providers:
-```
-terraform init
-```
-
-8. Deploy Kubernetes environment:
-```
-terraform plan
-terraform apply
-```
-
-9. After the environment is deployed, you can access the Nginx service at the IP address of the load balancer, which can be found in the Terraform output:
-```
-terraform output -raw api_endpoints
-```
-
-
-## Important Notes
-
-- You will need a Linode account and an API token to use this demo.
-- The Terraform configurations provided in this demo are for demonstration purposes only and are not production-ready. It is recommended that you review and modify the configurations to meet your specific requirements before using them in a production environment.
-- The demo uses a null_resource with a local-exec provisioner to write the kubeconfig to a file. This is not recommended for production use, and it is recommended that you use a more secure method to manage your kubeconfig.
-- This demo assumes that you have already installed and configured Terraform on your local machine. If you have not done so, please refer to the Terraform documentation for instructions.

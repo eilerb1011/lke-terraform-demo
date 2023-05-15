@@ -8,20 +8,25 @@ Before starting this demo, you should have the following:
 - Linode account
 - Linode Personal Access Token (PAT) with the following scopes: linodes:read_write, lke:read_write
 - A Gitlab account - either Gitlab.com or Gitlab CE will do:
+-   Your Gitlab account and Github account will need to use the same email address
 -   For Gitlab CE, you will need access to a docker runner.
--   You will also need to create a personal access token in Github.
+-   You will need to create a personal access token in Github.
 
 ## SetUp
-1. Import this repository to a new Gitlab Project:
--Click New Project and select Import
+1. Import this repository to a new Gitlab Project  
+- Fork this repo to your own account
+- In Gitlab, click New Project and select Import
+- Select the button for Github
+- Log in using your personal access token for Github
+- Select the repo you would like to import (hopefully this one) and click import
 
 2. Edit terraform.tfvars file and add your own values to the file.  
---If you only want one cluster. delete everything starting with the CLUSTER 2 Settings line  
---First give each cluster a unique label.  
---Select the region the cluster will be deployed in.  Regions can be found here:  curl https://api.linode.com/v4/regions | jq  
---HA Value determines whether the control plane has 1 node or 3.  And HA control plane can not be reverted.  However a non-HA control plane can be upgraded later.  
---Select you Linode instance types used in the node pool:  Values can be found using the API:  curl https://api.linode.com/v4/linode/types | jq  
---Set your minimum and maximum nodes for auto-scaling.
+- If you only want one cluster. delete everything starting with the CLUSTER 2 Settings line  
+- First give each cluster a unique label.  
+- Select the region the cluster will be deployed in.  Regions can be found here:  curl https://api.linode.com/v4/regions | jq  
+- HA Value determines whether the control plane has 1 node or 3.  And HA control plane can not be reverted.  However a non-HA control plane can be upgraded later.  
+- Select you Linode instance types used in the node pool:  Values can be found using the API:  curl https://api.linode.com/v4/linode/types | jq  
+- Set your minimum and maximum nodes for auto-scaling.
 ```
 k8s_version = "1.26"
 #####CLUSTER 1 Settings###############

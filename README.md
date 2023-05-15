@@ -17,15 +17,9 @@ Before starting this demo, you should have the following:
 ```
 Click New Project and select Import
 ```
-2. cd into the infrastructure directory:
 
+2. Edit terraform.tfvars file and add you own values in (Do not replace the token value):
 ```
-cd infrastructure
-```
-
-3. Create a terraform.tfvars file with the following variables, replacing the values with your own:
-```
-token = "<YOUR-LINODE-PAT>"
 k8s_version = "<K8S-VERSION>"
 label = "<CLUSTER-LABEL>"
 region = "<CLUSTER-REGION>"
@@ -36,8 +30,14 @@ pools = {
   }
 }
 ```
+3.  Create an environment variable in Gitlab under Settings --> CICD --> Variables
+```
+-variable name = TF_VAR_token
+-enter your Linode personal access token as the value
+```
+4.  Assign a docker runner to the project in Gitlab under Settings --> CICD --> Runners
 
-4. Initialize the Terraform providers:
+5. Initialize the Terraform providers:
 ```
 terraform init
 ```

@@ -7,9 +7,9 @@ terraform {
   }
 }
 //Use the Linode Provider
-provider "linode" {
-  token = var.token
-}
+#provider "linode" {
+#  token = var.token
+#}
 
 //Use the linode_lke_cluster resource to create
 //a Kubernetes cluster

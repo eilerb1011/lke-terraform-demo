@@ -1,6 +1,6 @@
 k8s_version = "1.26"
 #####CLUSTER 1 Settings###############
-label = "us-east-k8s-2"
+label = "us-east-k8s-3"
 region = "us-east"
 #Mark the following true for HA control plane or false for non-HA
 HA = false
@@ -12,7 +12,7 @@ pools = {
   }
 }
 ############CLUSTER 2 Settings###########
-label2 = "us-west-k8s-2"
+label2 = "us-west-k8s-3"
 region2 = "us-west"
 #Mark the following true for HA control plane or false for non-HA
 HA2 = false

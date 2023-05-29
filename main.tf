@@ -51,7 +51,7 @@ resource "linode_lke_cluster" "cluster2" {
       }
     }
   }
-terraform {
-  backend "http" {
-  }
-}
+#terraform {
+#  backend "http" {
+#  }
+#}
